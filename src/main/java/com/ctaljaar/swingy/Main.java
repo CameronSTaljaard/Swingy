@@ -1,4 +1,4 @@
-package com.mrb.swingy;
+package com.ctaljaar.swingy;
 
 public class Main {
 
