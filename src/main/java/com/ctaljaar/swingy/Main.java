@@ -1,15 +1,32 @@
 package com.ctaljaar.swingy;
 
+import com.ctaljaar.swingy.controller.CharacterHandler;
+import java.io.*;
+
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+
         if (args.length != 1 || (!args[0].equals("console") && !args[0].equals("gui"))) {
             System.out.println("Usage: program console | gui");
+			// CharacterHandler.saveCharacter("Tommy", 69);
+			// CharacterHandler.readCharacters("Tommy");
             System.exit(1);
         }
 
-        if (args[0].equals("console"))
-            System.out.println("Console, huh?");
+		if (args[0].equals("console")) {
+		
+			int result;
+
+			result = CharacterHandler.creationController();
+			if (result == 1) {
+				System.out.println("Character created.");
+			} else if (result == 2) {
+				System.out.println("Character already exists");
+			} else {
+				System.out.println("Invalid name.");
+			}
+		}
         else if (args[0].equals("gui"))
             System.out.println("GUI, huh?");
     }
