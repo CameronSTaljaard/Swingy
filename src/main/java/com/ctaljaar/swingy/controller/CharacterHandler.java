@@ -13,11 +13,11 @@ import com.ctaljaar.swingy.model.Player;
 
 public class CharacterHandler {
 
-	public static void readCharacters(String name) {
+	public static void readCharacter(String name) {
 
 		try {
 			FileInputStream fi = null;
-			fi = new FileInputStream(name + ".txt");
+			fi = new FileInputStream("saves/heroes/" + name + ".txt");
 			ObjectInputStream oi = new ObjectInputStream(fi);
 
 			Player pr1 = (Player) oi.readObject();
@@ -36,32 +36,26 @@ public class CharacterHandler {
 		}
 	}
 
-	public static int saveCharacter(String name, String heroClass) {
+	public static void saveCharacter(String name, String heroClass) {
 
-		File characterFile;
 		Player p1 = new Player(name, heroClass);
 
 		try {
-			characterFile = new File(name + ".txt");
-			if (characterFile.exists()) {
-				return (2);
-			}
-
-			FileOutputStream f = new FileOutputStream(new File(name + ".txt"));
+			FileOutputStream f = new FileOutputStream(new File("saves/heroes/" + name + ".txt"));
 			ObjectOutputStream o = new ObjectOutputStream(f);
 
 			o.writeObject(p1);
 
 			o.close();
 			f.close();
-			return (1);
+			return;
 
 		} catch (FileNotFoundException e) {
-			return (0);
+			return;
 		} catch (IOException e) {
-			return (0);
+			return;
 		} catch (Exception e) {
-			return (0);
+			return;
 		}
 	}
 
@@ -69,6 +63,21 @@ public class CharacterHandler {
 		Scanner scanner = new Scanner(System.in);
 		System.out.print("Enter your heroes name: ");
 		String name = scanner.nextLine();
+
+		// Check for empty name.
+		File characterFile = new File("saves/heroes/" + name + ".txt");
+		if (characterFile.exists()) {
+			scanner.close();
+			return (2);
+		}
+
+		// Check if hero already exists.
+		if (name.isEmpty()) {
+			scanner.close();
+			return (4);
+		}
+
+		// Validate hero class.
 		System.out.print("What is your class?: \n(1) = Warrior\n(2) = Rogue\n(3) = Knight\n ");
 		String heroClass = scanner.nextLine();
 		
@@ -78,16 +87,16 @@ public class CharacterHandler {
 			heroClass = "Rogue";
 		else if (heroClass.equals("3"))
 			heroClass = "Knight";
-		
-		if (name.isEmpty()) {
-			scanner.close();
-			return (4);
-		}
+
+		// Error on invalid class.
 		if (!heroClass.equals("Warrior") && !heroClass.equals("Rogue") && !heroClass.equals("Knight")) {
 			scanner.close();
 			return (3);
 		}
 		scanner.close();
-		return (saveCharacter(name, heroClass));
+		
+		// Finalize and save character.
+		saveCharacter(name, heroClass);
+		return (1);
 	}
 }

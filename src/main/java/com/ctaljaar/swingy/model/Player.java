@@ -38,7 +38,7 @@ public class Player implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Name:" + name + "\nClass: " + heroClass + "\n\nSTATS:" + "\nAttack: " + attack
+		return "Name: " + name + "\nClass: " + heroClass + "\n\nSTATS: " + "\nAttack: " + attack
 		+ "\nDefense: " + defense + "\nHit Points: " + health + "\n\nLevel: " + level + "\nExperience: " + experience;
 	}
 }

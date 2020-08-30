@@ -9,9 +9,8 @@ public class Main {
 
         if (args.length != 1 || (!args[0].equals("console") && !args[0].equals("gui"))) {
             System.out.println("Usage: program console | gui");
-			// CharacterHandler.saveCharacter("Tommy", 69);
-			// CharacterHandler.readCharacters("Tommy");
-            System.exit(1);
+			CharacterHandler.readCharacter("Undyne");
+            System.exit(0);
         }
 
 		if (args[0].equals("console")) {
