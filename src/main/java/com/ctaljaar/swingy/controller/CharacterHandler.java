@@ -9,7 +9,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
-import com.ctaljaar.swingy.util.constants;
+import com.ctaljaar.swingy.model.Player;
 
 public class CharacterHandler {
 
@@ -36,10 +36,10 @@ public class CharacterHandler {
 		}
 	}
 
-	public static int saveCharacter(String name, int health) {
+	public static int saveCharacter(String name, String heroClass) {
 
 		File characterFile;
-		Player p1 = new Player(name, health);
+		Player p1 = new Player(name, heroClass);
 
 		try {
 			characterFile = new File(name + ".txt");
@@ -69,13 +69,25 @@ public class CharacterHandler {
 		Scanner scanner = new Scanner(System.in);
 		System.out.print("Enter your heroes name: ");
 		String name = scanner.nextLine();
+		System.out.print("What is your class?: \n(1) = Warrior\n(2) = Rogue\n(3) = Knight\n ");
+		String heroClass = scanner.nextLine();
 		
-		if (!name.isEmpty()) {
+		if (heroClass.equals("1"))
+			heroClass = "Warrior";
+		else if (heroClass.equals("2"))
+			heroClass = "Rogue";
+		else if (heroClass.equals("3"))
+			heroClass = "Knight";
+		
+		if (name.isEmpty()) {
 			scanner.close();
-			return (saveCharacter(name, 100));
+			return (4);
+		}
+		if (!heroClass.equals("Warrior") && !heroClass.equals("Rogue") && !heroClass.equals("Knight")) {
+			scanner.close();
+			return (3);
 		}
 		scanner.close();
-		return (0);
+		return (saveCharacter(name, heroClass));
 	}
-
 }

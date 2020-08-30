@@ -23,8 +23,10 @@ public class Main {
 				System.out.println("Character created.");
 			} else if (result == 2) {
 				System.out.println("Character already exists");
+			} else if (result == 3){
+				System.out.println("Invalid Class choice");
 			} else {
-				System.out.println("Invalid name.");
+				System.out.println("Invalid name");
 			}
 		}
         else if (args[0].equals("gui"))
