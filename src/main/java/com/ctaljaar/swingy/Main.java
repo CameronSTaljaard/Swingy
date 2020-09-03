@@ -22,6 +22,8 @@ public class Main {
 		
 		if (args[0].equals("console")) {
 			GameHandler.GameController();
+			System.exit(0);
+
 		} else if (args[0].equals("gui")) {
 			new TextAreaLogProgram();
 			GameHandler.GameController();

@@ -1,9 +1,9 @@
 package com.ctaljaar.swingy.controller;
 
 import java.util.Scanner;
-import java.io.File;
+import java.io.*;
 
-// import com.ctaljaar.swingy.model.Player;
+import com.ctaljaar.swingy.model.Player;
 
 public class CharacterValidator {
 
@@ -59,5 +59,31 @@ public class CharacterValidator {
 			}
 		}
 		return(heroClass);
+	}
+
+	public static Player loadPlayer(String name) {
+
+		Player loadedPlayer;
+
+		try {
+			FileInputStream fi = null;
+			ObjectInputStream oi = new ObjectInputStream(fi);
+			loadedPlayer = (Player) oi.readObject();
+			
+			fi = new FileInputStream("saves/heroes/" + name + ".txt");
+
+			// System.out.println(loadedPlayer.toString());
+			oi.close();
+			fi.close();
+			// System.out.println("Printing: " + name);
+			
+		} catch (FileNotFoundException e) {
+			System.out.println("Character does not exist");
+		} catch (IOException e) {
+			System.out.println("Error initializing stream");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return (loadedPlayer);
 	}
 }

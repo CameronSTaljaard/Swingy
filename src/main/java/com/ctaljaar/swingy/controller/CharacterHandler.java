@@ -26,5 +26,4 @@ public class CharacterHandler {
 			e.printStackTrace();
 		}
 	}
-
 }
