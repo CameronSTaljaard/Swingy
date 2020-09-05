@@ -89,7 +89,7 @@ public class Player implements Serializable {
 	}
 	
 	public int getExperience() {
-		return this.attack;
+		return this.experience;
 	}
 	public void addExperience(int experience) {
 		this.experience += experience;
@@ -103,7 +103,7 @@ public class Player implements Serializable {
 	}
 
 	public int getVerticalPos() {
-		return this.mapLevel;
+		return this.verticalPos;
 	}
 	public void setVerticalPos(int verticalPos) {
 		this.verticalPos = verticalPos;

@@ -1,10 +1,8 @@
 package com.ctaljaar.swingy.model;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
+import java.util.*;
+import com.ctaljaar.swingy.controller.CharacterValidator;
 
 public class FileHandler {
 	public static boolean saveCharacter(String name, String heroClass) {
@@ -28,5 +26,20 @@ public class FileHandler {
 		} catch (Exception e) {
 			return (false);
 		}
+	}
+
+	public static void UpdateCharacter(Scanner scanner, String mode) {
+		String name = "";
+		String heroClass = "";
+		
+		name = CharacterValidator.validateName(scanner, mode);
+		if (mode.equals("Create"))
+			heroClass = CharacterValidator.validateClass(scanner);
+
+		if (FileHandler.saveCharacter(name, heroClass))
+			if (mode.equals("Create"))
+				System.out.println("Character created");
+			else
+				System.out.println("Character updated");
 	}
 }
