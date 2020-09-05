@@ -1,6 +1,8 @@
 package com.ctaljaar.swingy.model;
 
 import java.io.Serializable;
+import java.lang.invoke.SwitchPoint;
+
 import javax.validation.constraints.*;
 
 public class Player implements Serializable {
@@ -22,8 +24,14 @@ public class Player implements Serializable {
 	@Min(value = 3, message = "Attack can not be beneath 3.")
 	private int attack;
 
+	@NotNull(message = "Can't have null weapon.")
+	private int weapon;
+
 	@Min(value = 3, message = "Defense can not be beneath 3.")
 	private int defense;
+
+	@NotNull(message = "Can't have null armor.")
+	private int armor;
 
 	@Min(value = 0, message = "Experience can not be beneath 0.")
 	private int experience;
@@ -40,6 +48,7 @@ public class Player implements Serializable {
 	public Player(String name, String heroClass) {
 		this.name = name;
 		this.heroClass = heroClass;
+		
 		if (heroClass == "Warrior") {
 			this.attack = 5;
 			this.defense = 5;
@@ -53,6 +62,8 @@ public class Player implements Serializable {
 			this.defense = 6;
 			this.health = 6;
 		}
+		this.armor = 0;
+		this.weapon = 0;
 		this.experience = 0;
 		this.level = 1;
 		this.mapLevel = 1;
@@ -116,9 +127,52 @@ public class Player implements Serializable {
 		this.horizontalPos = horizontalPos;
 	}
 
+	public String Getweapon() {
+		String weapon = "Knife. +0 Attack\n";
+		switch (this.weapon) {
+			case 0:
+				weapon = "Knife. +0 Attack\n";
+				break;
+			case 1:
+				weapon = "Short sword. +1 Attack\n";
+				break;
+			case 3:
+				weapon = "Longsword. +2 Attack\n";
+				break;
+		}
+		return (weapon);
+	}
+
+	public void setWeapon(int weapon) {
+		this.weapon = weapon;
+	}
+
+	public String getArmor() {
+		String armor = "None. +0 Defense\n";
+		switch (this.armor) {
+			case 0:
+				armor = "None: +0 Defense\n";
+				break;
+			case 1:
+				armor = "Leather: +1 Defense\n";
+				break;
+			case 3:
+				armor = "Chain mail: +2 Defense\n";
+				break;
+		}
+		return (armor);
+	}
+
+	public void setArmor(int armor) {
+		this.armor = armor;
+	}
+
 	@Override
 	public String toString() {
-		return "Name: " + name + "\nClass: " + heroClass + "\n\nSTATS: " + "\nAttack: " + attack
-		+ "\nDefense: " + defense + "\nHit Points: " + health + "\n\nLevel: " + level + "\nExperience: " + experience;
+		String weapon = this.Getweapon();
+		String armor = this.getArmor();
+		String heroClass = this.heroClass;
+		return "\n\nYOUR HERO:\nName: " + name + "\nClass: " + heroClass + "\n\nSTATS: " + "\nAttack: " + attack
+		+ "\nDefense: " + defense + "\nHit Points: " + health + "\n\nEquipment:\n" + "Armor: " + armor + "Weapon: " + weapon + "\nLevel: " + level +"\nExperience: " + this.experience;
 	}
 }

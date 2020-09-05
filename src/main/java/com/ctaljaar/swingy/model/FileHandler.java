@@ -5,7 +5,7 @@ import java.util.*;
 import com.ctaljaar.swingy.controller.CharacterValidator;
 
 public class FileHandler {
-	public static boolean saveCharacter(String name, String heroClass) {
+	public static boolean createCharacter(String name, String heroClass) {
 
 		Player p1 = new Player(name, heroClass);
 
@@ -28,18 +28,38 @@ public class FileHandler {
 		}
 	}
 
-	public static void UpdateCharacter(Scanner scanner, String mode) {
+	public static String validateCharacter(Scanner scanner, String mode) {
 		String name = "";
 		String heroClass = "";
 		
 		name = CharacterValidator.validateName(scanner, mode);
-		if (mode.equals("Create"))
+		if (mode.equals("create"))
 			heroClass = CharacterValidator.validateClass(scanner);
 
-		if (FileHandler.saveCharacter(name, heroClass))
-			if (mode.equals("Create"))
+		if (FileHandler.createCharacter(name, heroClass))
+			if (mode.equals("Create")) {
 				System.out.println("Character created");
-			else
-				System.out.println("Character updated");
+				return (name);
+			} else { 
+				System.out.println("Character accepted.\nLoading character");
+				return (name);
+			}
+		return ("");
 	}
+
+	public static Player loadPlayer(String name) {
+		try {
+			FileInputStream fis = new FileInputStream("saves/heroes/" + name + ".txt");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			Player player = (Player) ois.readObject();
+
+			ois.close();
+			System.out.println("Loaded character: " + name);
+			return(player);
+		
+		} catch (IOException | ClassNotFoundException ex) {
+			ex.printStackTrace();
+		}
+		return (null);
+		}
 }

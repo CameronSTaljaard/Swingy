@@ -15,7 +15,6 @@ import java.util.Date;
 import javax.swing.*;
 import javax.swing.text.*;
 import java.awt.*;
-import com.ctaljaar.swingy.util.*;
  
 public class TextAreaLogProgram extends JFrame {
 

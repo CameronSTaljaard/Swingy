@@ -1,27 +1,23 @@
 package com.ctaljaar.swingy.controller;
 
 import com.ctaljaar.swingy.model.FileHandler;
-import com.ctaljaar.swingy.model.Player;
-// import com.ctaljaar.swingy.model.FileHandler;
-
 import java.util.Scanner;
+import com.ctaljaar.swingy.model.Player;
 
 public class GameHandler {
 
 	public static void GameController() {
 		String mode;
+		String name;
+		Player loadedPlayer;
 		Scanner scanner = new Scanner(System.in);
 
 		mode = StartGame(scanner, false);
-		FileHandler.UpdateCharacter(scanner, mode);
-
-		// Player loadedPlayer;
-		// loadedPlayer = CharacterValidator.loadPlayer("Undyne");
-		// CharacterValidator.loadPlayer("Undyne");
-		// loadedPlayer.toString();
+		name = FileHandler.validateCharacter(scanner, mode);
+		loadedPlayer = FileHandler.loadPlayer(name);
+		System.out.println(loadedPlayer);
 	}
-
-	// TO DO
+	
 	public static String StartGame(Scanner scanner, boolean recurred) {
 		String mode;
 		

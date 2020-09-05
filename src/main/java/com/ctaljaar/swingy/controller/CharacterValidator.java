@@ -14,7 +14,7 @@ public class CharacterValidator {
 
 		while (!validName) {
 
-			System.out.print("Enter your heroes name: \n");
+			System.out.print("Enter your heroes name: ");
 			name = scanner.nextLine();
 
 			if (name.isEmpty()) {
@@ -67,20 +67,4 @@ public class CharacterValidator {
 		}
 		return (heroClass);
 	}
-
-	public static Player loadPlayer(String name) {
-
-		try {
-			FileInputStream fis = new FileInputStream("saves/heroes/" + name + ".txt");
-			ObjectInputStream ois = new ObjectInputStream(fis);
-			Player player = (Player) ois.readObject();
-
-			ois.close();
-			return(player);
-		
-		} catch (IOException | ClassNotFoundException ex) {
-			ex.printStackTrace();
-		}
-		return (null);
-		}
 }
