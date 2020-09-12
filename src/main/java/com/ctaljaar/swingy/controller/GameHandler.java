@@ -14,8 +14,16 @@ public class GameHandler {
 
 		mode = StartGame(scanner, false);
 		name = FileHandler.validateCharacter(scanner, mode);
-		loadedPlayer = FileHandler.loadPlayer(name);
-		System.out.println(loadedPlayer);
+        loadedPlayer = FileHandler.loadPlayer(name);
+
+        // loadedPlayer.setArmor(2);
+        // loadedPlayer.setLevel(2);
+        // loadedPlayer.setHealth(999);
+
+        // FileHandler.updatePlayer(loadedPlayer);
+        // System.out.println(loadedPlayer);
+
+		// System.out.println(loadedPlayer);
 	}
 	
 	public static String StartGame(Scanner scanner, boolean recurred) {
@@ -25,7 +33,7 @@ public class GameHandler {
 			System.out.println("WELCOME TO SWINGY!\n");
 		System.out.println("(1) Create a new hero");
 		System.out.println("(2) Load a hero");
-		mode = scanner.nextLine().toLowerCase();
+        mode = scanner.nextLine().toLowerCase();
 
 		if (mode.equals("1"))
 			mode = "create";

@@ -1,7 +1,6 @@
 package com.ctaljaar.swingy.model;
 
 import java.io.Serializable;
-import java.lang.invoke.SwitchPoint;
 
 import javax.validation.constraints.*;
 
@@ -136,7 +135,7 @@ public class Player implements Serializable {
 			case 1:
 				weapon = "Short sword. +1 Attack\n";
 				break;
-			case 3:
+			case 2:
 				weapon = "Longsword. +2 Attack\n";
 				break;
 		}
@@ -156,7 +155,7 @@ public class Player implements Serializable {
 			case 1:
 				armor = "Leather: +1 Defense\n";
 				break;
-			case 3:
+			case 2:
 				armor = "Chain mail: +2 Defense\n";
 				break;
 		}
@@ -171,7 +170,7 @@ public class Player implements Serializable {
 	public String toString() {
 		String weapon = this.Getweapon();
 		String armor = this.getArmor();
-		String heroClass = this.heroClass;
+		// String heroClass = this.heroClass;
 		return "\n\nYOUR HERO:\nName: " + name + "\nClass: " + heroClass + "\n\nSTATS: " + "\nAttack: " + attack
 		+ "\nDefense: " + defense + "\nHit Points: " + health + "\n\nEquipment:\n" + "Armor: " + armor + "Weapon: " + weapon + "\nLevel: " + level +"\nExperience: " + this.experience;
 	}

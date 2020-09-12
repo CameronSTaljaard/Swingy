@@ -1,4 +1,4 @@
-package com.ctaljaar.swingy.util;
+package com.ctaljaar.swingy.view;
 
 import java.io.IOException;
 import java.io.OutputStream;

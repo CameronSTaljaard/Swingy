@@ -3,8 +3,6 @@ package com.ctaljaar.swingy.controller;
 import java.util.Scanner;
 import java.io.*;
 
-import com.ctaljaar.swingy.model.Player;
-
 public class CharacterValidator {
 
 	public static String validateName(Scanner scanner, String mode) {
@@ -23,7 +21,7 @@ public class CharacterValidator {
 				validName = true;
 			}
 
-			File characterFile = new File("saves/heroes/" + name + ".txt");
+			File characterFile = new File("saves/heroes/" + name + ".ser");
 			if (mode.equals("create")) {
 				if (characterFile.exists()) {
 					System.out.print("That hero already exists\n");

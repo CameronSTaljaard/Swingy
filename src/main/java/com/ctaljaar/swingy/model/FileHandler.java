@@ -5,26 +5,20 @@ import java.util.*;
 import com.ctaljaar.swingy.controller.CharacterValidator;
 
 public class FileHandler {
-	public static boolean createCharacter(String name, String heroClass) {
+	public static void createCharacter(String name, String heroClass) {
+        try {
+			Player player = new Player(name, heroClass);
 
-		Player p1 = new Player(name, heroClass);
-
-		try {
-			FileOutputStream f = new FileOutputStream(new File("saves/heroes/" + name + ".txt"));
-			ObjectOutputStream o = new ObjectOutputStream(f);
-
-			o.writeObject(p1);
-
-			o.close();
-			f.close();
-			return (true);
+			// write object to file
+			FileOutputStream fos = new FileOutputStream("saves/heroes/" + name + ".ser");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(player);
+            oos.close();
 
 		} catch (FileNotFoundException e) {
-			return (false);
+			e.printStackTrace();
 		} catch (IOException e) {
-			return (false);
-		} catch (Exception e) {
-			return (false);
+			e.printStackTrace();
 		}
 	}
 
@@ -36,30 +30,45 @@ public class FileHandler {
 		if (mode.equals("create"))
 			heroClass = CharacterValidator.validateClass(scanner);
 
-		if (FileHandler.createCharacter(name, heroClass))
-			if (mode.equals("Create")) {
-				System.out.println("Character created");
-				return (name);
-			} else { 
-				System.out.println("Character accepted.\nLoading character");
-				return (name);
-			}
-		return ("");
+		FileHandler.createCharacter(name, heroClass);
+        if (mode.equals("Create")) {
+            System.out.println("Character created");
+            return (name);
+        } else { 
+            System.out.println("Character accepted.\nLoading character");
+            return (name);
+        }
 	}
 
 	public static Player loadPlayer(String name) {
-		try {
-			FileInputStream fis = new FileInputStream("saves/heroes/" + name + ".txt");
+        try {
+			FileInputStream fis = new FileInputStream("saves/heroes/" + name + ".ser");
 			ObjectInputStream ois = new ObjectInputStream(fis);
-			Player player = (Player) ois.readObject();
+			Player result = (Player) ois.readObject();
+            ois.close();
+            
+            return (result);
 
-			ois.close();
-			System.out.println("Loaded character: " + name);
-			return(player);
-		
-		} catch (IOException | ClassNotFoundException ex) {
-			ex.printStackTrace();
-		}
-		return (null);
-		}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+        }
+        return (null);
+    }
+        
+	public static void updatePlayer(Player player) {
+        try {
+            File f = new File("saves/heroes/" + player.getName() + ".ser");
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f));
+            oos.writeObject(player);
+            oos.flush();
+            oos.close();
+        } catch (IOException e) {
+            System.out.println("IO EXCEPTION UPDATING");
+            return;
+        }
+    }
 }

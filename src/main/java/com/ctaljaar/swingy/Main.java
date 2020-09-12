@@ -6,7 +6,6 @@ package com.ctaljaar.swingy;
 import javax.swing.*;
 import java.awt.*;
 import com.ctaljaar.swingy.controller.GameHandler;
-import com.ctaljaar.swingy.util.*;
 import com.ctaljaar.swingy.view.TextAreaLogProgram;
 
 import java.io.*;
