@@ -68,7 +68,11 @@ public class Player implements Serializable {
 		this.mapLevel = 1;
 		this.verticalPos = 0;
 		this.horizontalPos = 0;
-	}
+    }
+    
+    public String getName() {
+        return this.name;
+    }
 
 	public int getHealth() {
 		return this.health;

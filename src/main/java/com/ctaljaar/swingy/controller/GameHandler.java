@@ -16,14 +16,10 @@ public class GameHandler {
 		name = FileHandler.validateCharacter(scanner, mode);
         loadedPlayer = FileHandler.loadPlayer(name);
 
-        // loadedPlayer.setArmor(2);
-        // loadedPlayer.setLevel(2);
         // loadedPlayer.setHealth(999);
-
         // FileHandler.updatePlayer(loadedPlayer);
-        // System.out.println(loadedPlayer);
 
-		// System.out.println(loadedPlayer);
+        System.out.println(loadedPlayer);
 	}
 	
 	public static String StartGame(Scanner scanner, boolean recurred) {

@@ -27,10 +27,11 @@ public class FileHandler {
 		String heroClass = "";
 		
 		name = CharacterValidator.validateName(scanner, mode);
-		if (mode.equals("create"))
+		if (mode.equals("create")) {
 			heroClass = CharacterValidator.validateClass(scanner);
-
-		FileHandler.createCharacter(name, heroClass);
+            FileHandler.createCharacter(name, heroClass);
+        }
+            
         if (mode.equals("Create")) {
             System.out.println("Character created");
             return (name);
@@ -61,6 +62,7 @@ public class FileHandler {
         
 	public static void updatePlayer(Player player) {
         try {
+            // File f = new File("saves/heroes/" + player.getName() + ".ser");
             File f = new File("saves/heroes/" + player.getName() + ".ser");
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f));
             oos.writeObject(player);
