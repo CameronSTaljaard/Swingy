@@ -1,6 +1,9 @@
 package com.ctaljaar.swingy.controller;
 
 import java.util.Scanner;
+
+import com.ctaljaar.swingy.util.Terminal;
+
 import java.io.*;
 
 public class CharacterValidator {
@@ -23,18 +26,18 @@ public class CharacterValidator {
 
 			File characterFile = new File("saves/heroes/" + name + ".ser");
 			if (mode.equals("create")) {
-				if (characterFile.exists()) {
-					System.out.print("That hero already exists\n");
-					validName = false;
-				}
-			}
-			else if (mode.equals("load")) {
-				if (!characterFile.exists()) {
-					System.out.print("No hero with name: " + name + " exists.\n");
-					validName = false;
-				}
+                if (characterFile.exists()) {
+                    System.out.print("That hero already exists\n");
+                    validName = false;
+                }
+			} else if (mode.equals("load")) {
+                if (!characterFile.exists()) {
+                    System.out.print("No hero with name: " + name + " exists.\n");
+                    validName = false;
+                }
 			}
 		}
+		Terminal.clearScreen();
 		return (name);
 	}
 
@@ -63,6 +66,7 @@ public class CharacterValidator {
 				validClass = true;
 			}
 		}
+		Terminal.clearScreen();
 		return (heroClass);
 	}
 }

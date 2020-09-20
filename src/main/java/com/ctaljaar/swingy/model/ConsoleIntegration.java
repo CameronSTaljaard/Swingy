@@ -25,27 +25,4 @@ public class ConsoleIntegration {
 
         return consoleOutput;
     }
-
-    public void openTerminalWithCommand(String inputCommand){
-        String nameOS = System.getProperty("os.name");
-
-        System.out.println(nameOS);
-
-        if (nameOS.startsWith("Windows")){
-            //// windows only
-        /*Process p = Runtime.getRuntime().exec("cmd /c start cmd.exe");
-        p.waitFor();*/
-        } else if (nameOS.startsWith("Mac")){
-            //Mac
-        /*
-        Runtime.getRuntime().exec("/usr/bin/open -a Terminal /path/to/the/executable");
-         */
-
-        } else if (nameOS.startsWith("Linux")){
-            //Linux      // GNU/Linux -- example
-
-            //Runtime.getRuntime().exec("/usr/bin/x-terminal-emulator --disable-factory -e cat README.txt");
-
-        }
-    }
 }

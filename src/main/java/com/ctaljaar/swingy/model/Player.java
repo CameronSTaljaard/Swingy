@@ -64,7 +64,7 @@ public class Player implements Serializable {
 		this.armor = 0;
 		this.weapon = 0;
 		this.experience = 0;
-		this.level = 1;
+		this.level = 0;
 		this.mapLevel = 1;
 		this.verticalPos = 0;
 		this.horizontalPos = 0;
@@ -84,7 +84,7 @@ public class Player implements Serializable {
 	public int getLevel() {
 		return this.health;
 	}
-	public void setLevel(@Min(1) int level) {
+	public void setLevel(@Min(0) int level) {
 		this.level = level;
 	}
 
@@ -119,6 +119,7 @@ public class Player implements Serializable {
 	public int getVerticalPos() {
 		return this.verticalPos;
 	}
+
 	public void setVerticalPos(int verticalPos) {
 		this.verticalPos = verticalPos;
 	}
@@ -126,6 +127,7 @@ public class Player implements Serializable {
 	public int getHorizontalPos() {
 		return this.horizontalPos;
 	}
+
 	public void setHorizontalPos(int horizontalPos) {
 		this.horizontalPos = horizontalPos;
 	}
@@ -170,12 +172,29 @@ public class Player implements Serializable {
 		this.armor = armor;
 	}
 
+	public void changeLevel() {
+		if (this.getExperience() >= 12200) {
+			this.setLevel(5);
+		} else if (this.getExperience() >= 8050) {
+			this.setLevel(4);
+		} else if (this.getExperience() >= 4800) {
+			this.setLevel(3);
+		} else if (this.getExperience() >= 2450) {
+			this.setLevel(2);
+		} else if (this.getExperience() >= 1000) {
+			this.setLevel(1);
+		} else {
+			this.setLevel(0);
+		}
+	}
+
 	@Override
 	public String toString() {
 		String weapon = this.Getweapon();
 		String armor = this.getArmor();
 		// String heroClass = this.heroClass;
 		return "\n\nYOUR HERO:\nName: " + name + "\nClass: " + heroClass + "\n\nSTATS: " + "\nAttack: " + attack
-		+ "\nDefense: " + defense + "\nHit Points: " + health + "\n\nEquipment:\n" + "Armor: " + armor + "Weapon: " + weapon + "\nLevel: " + level +"\nExperience: " + this.experience;
+		+ "\nDefense: " + defense + "\nHit Points: " + health + "\n\nEquipment:\n" + "Armor: " + armor + "Weapon: " + weapon + "\nLevel: " + level +"\nExperience: " + this.experience
+		+ "\n\nVerticalpos: " + this.verticalPos + "\nHorizontalPos: " + this.horizontalPos;
 	}
 }

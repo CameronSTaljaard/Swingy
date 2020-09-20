@@ -3,6 +3,7 @@ package com.ctaljaar.swingy.model;
 import java.io.*;
 import java.util.*;
 import com.ctaljaar.swingy.controller.CharacterValidator;
+import com.ctaljaar.swingy.util.Globals;
 
 public class FileHandler {
 	public static void createCharacter(String name, String heroClass) {
@@ -22,8 +23,9 @@ public class FileHandler {
 		}
 	}
 
-	public static String validateCharacter(Scanner scanner, String mode) {
-		String name = "";
+	public static String validateCharacter(String mode) {
+        Scanner scanner = Globals.scanner;
+        String name = "";
 		String heroClass = "";
 		
 		name = CharacterValidator.validateName(scanner, mode);
@@ -46,6 +48,7 @@ public class FileHandler {
 			FileInputStream fis = new FileInputStream("saves/heroes/" + name + ".ser");
 			ObjectInputStream ois = new ObjectInputStream(fis);
 			Player result = (Player) ois.readObject();
+			fis.close();
             ois.close();
             
             return (result);
@@ -62,7 +65,6 @@ public class FileHandler {
         
 	public static void updatePlayer(Player player) {
         try {
-            // File f = new File("saves/heroes/" + player.getName() + ".ser");
             File f = new File("saves/heroes/" + player.getName() + ".ser");
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f));
             oos.writeObject(player);
