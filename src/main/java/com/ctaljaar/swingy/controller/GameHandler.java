@@ -11,12 +11,15 @@ public class GameHandler {
 	public static void GameController() {
 		String mode;
 		String name;
+		int mapSize;
 
 		mode = StartGame(false);
 		name = FileHandler.validateCharacter(mode);
 		Globals.player = FileHandler.loadPlayer(name);
+		mapSize = (Globals.player.getLevel() - 1) * 5 + 10 - (Globals.player.getLevel() % 2);
+		Globals.player.setMapSize(mapSize);
 		StartText();
-		System.out.println(Globals.player);
+		// System.out.println(Globals.player);
 		GameLoop.InputListener("", false);
 	}
 
@@ -24,8 +27,11 @@ public class GameHandler {
 		String mode;
 		Scanner scanner = Globals.scanner;
 
+		Terminal.clearScreen();
 		if (!recurred)
 			System.out.println("WELCOME TO SWINGY!\n");
+		else 
+			System.out.println("Invalid option. Please input 1, or 2.");
 		System.out.println("(1) Create a new hero");
 		System.out.println("(2) Load a hero");
 		mode = scanner.nextLine().toLowerCase();
@@ -38,7 +44,7 @@ public class GameHandler {
 		if (mode.equals("create") || mode.equals("load"))
 			return (mode);
 		else {
-			System.out.println(mode + " is not a valid option. Please input 1, or 2.");
+			
 			return StartGame(true);
 		}
 	}

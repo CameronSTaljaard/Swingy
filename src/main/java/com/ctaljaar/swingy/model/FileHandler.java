@@ -43,6 +43,11 @@ public class FileHandler {
         }
 	}
 
+	public static void deletePlayer() {
+		File f = new File("saves/heroes/" + Globals.player.getName() + ".ser");
+		f.delete();
+	}
+
 	public static Player loadPlayer(String name) {
         try {
 			FileInputStream fis = new FileInputStream("saves/heroes/" + name + ".ser");

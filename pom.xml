@@ -9,7 +9,6 @@
     <version>1.0</version>
 
 	<dependencies>
-	<!-- Bean Validation API and RI -->
 		<dependency>
 	    	<groupId>javax.validation</groupId>
 	    	<artifactId>validation-api</artifactId>
