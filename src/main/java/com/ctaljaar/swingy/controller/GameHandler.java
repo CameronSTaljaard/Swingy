@@ -18,9 +18,7 @@ public class GameHandler {
 		Globals.player = FileHandler.loadPlayer(name);
 		mapSize = (Globals.player.getLevel() - 1) * 5 + 10 - (Globals.player.getLevel() % 2);
 		Globals.player.setMapSize(mapSize);
-		System.out.println(Globals.player.getLevel());
 		StartText();
-		// System.out.println(Globals.player);
 		GameLoop.InputListener("", false);
 	}
 

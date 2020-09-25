@@ -20,6 +20,7 @@ public class GameLoop {
 				System.out.println("Your character has been saved.");
 				System.exit(0);
 			} else if (input.toLowerCase().equals("info")) {
+				Terminal.clearScreen();
 				System.out.println(Globals.player);
 			}
 			input = scanner.nextLine();
@@ -28,10 +29,13 @@ public class GameLoop {
 				MovePlayer(input.toLowerCase());
 				System.out.println("Please input a command: ");
 				InputListener(input, true);
-			} else {
+			} else if (!input.toLowerCase().equals("info")) {
 				Terminal.clearScreen();
 				System.out.println(input + " is not a valid command.");
 				System.out.println("Please input a valid command: ");
+				InputListener(input, true);
+			} else {
+				Terminal.clearScreen();
 				InputListener(input, true);
 			}
 		}

@@ -74,8 +74,8 @@ public class CombatHandler {
 			System.out.println("+" + 100 * Globals.player.getLevel() + " EXP!");
 			Globals.player.changeLevel();
 		} else {
-			Globals.player.addExperience(500 * Globals.player.getLevel());
-			System.out.println("+" + 200 * Globals.player.getLevel() + " EXP!");
+			Globals.player.addExperience(250 * Globals.player.getLevel());
+			System.out.println("+" + 250 * Globals.player.getLevel() + " EXP!");
 			Globals.player.changeLevel();
 		}
 		int gotItem = rand.nextInt(4);
