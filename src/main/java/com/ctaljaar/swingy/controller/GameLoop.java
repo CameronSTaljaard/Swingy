@@ -63,7 +63,7 @@ public class GameLoop {
 				CombatHandler.startCombat();
 			FileHandler.updatePlayer(Globals.player);
 		}
-		if (Globals.player.getMapSize() / 2 <= Globals.player.getVerticalPos() || Globals.player.getMapSize() / 2 <= Globals.player.getHorizontalPos()) {
+		if (Globals.player.getMapSize() / 2 + 1 <= Globals.player.getVerticalPos() || Globals.player.getMapSize() / 2 + 1 <= Globals.player.getHorizontalPos()) {
 			System.out.println("You have won!");
 			System.out.println("Congratulations " + Globals.player.getName());
 			Globals.player.setVerticalPos(0);
