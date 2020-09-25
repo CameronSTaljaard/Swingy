@@ -18,6 +18,7 @@ public class GameHandler {
 		Globals.player = FileHandler.loadPlayer(name);
 		mapSize = (Globals.player.getLevel() - 1) * 5 + 10 - (Globals.player.getLevel() % 2);
 		Globals.player.setMapSize(mapSize);
+		System.out.println(Globals.player.getLevel());
 		StartText();
 		// System.out.println(Globals.player);
 		GameLoop.InputListener("", false);
@@ -53,6 +54,7 @@ public class GameHandler {
 		Terminal.clearScreen();
 		System.out.println("Welcome to Swingy " + Globals.player.getName());
 		System.out.println("\nYou can type exit at any time to quit the game.\n");
+		System.out.println("\nYou can type info for hero details.\n");
 		System.out.println("Type any of these commands to move:\n");
 		System.out.println("north, up, east, right, left, west, down, south");
 		System.out.println("The game has now begun.");

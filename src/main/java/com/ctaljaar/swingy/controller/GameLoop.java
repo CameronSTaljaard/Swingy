@@ -19,6 +19,8 @@ public class GameLoop {
 				System.out.println("The game has been terminated.");
 				System.out.println("Your character has been saved.");
 				System.exit(0);
+			} else if (input.toLowerCase().equals("info")) {
+				System.out.println(Globals.player);
 			}
 			input = scanner.nextLine();
 			if (Globals.validCommands.contains(input.toLowerCase())) {
@@ -61,7 +63,7 @@ public class GameLoop {
 				CombatHandler.startCombat();
 			FileHandler.updatePlayer(Globals.player);
 		}
-		if (Globals.player.getMapSize() <= Globals.player.getVerticalPos() || Globals.player.getMapSize() <= Globals.player.getHorizontalPos()) {
+		if (Globals.player.getMapSize() / 2 <= Globals.player.getVerticalPos() || Globals.player.getMapSize() / 2 <= Globals.player.getHorizontalPos()) {
 			System.out.println("You have won!");
 			System.out.println("Congratulations " + Globals.player.getName());
 			Globals.player.setVerticalPos(0);
