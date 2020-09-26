@@ -44,8 +44,7 @@ public class Player implements Serializable {
 
 	private int verticalPos;
 	private int horizontalPos;
-	private int tempLevel;
-	private int neededXP;
+	private int oldlevel;
 
 	Player() {
 	};
@@ -72,12 +71,11 @@ public class Player implements Serializable {
 		}
 		this.armor = 0;
 		this.weapon = 0;
-		this.experience = 0;
-		this.tempLevel = 1;
+		this.experience = 1000;
+		this.oldlevel = 1;
 		this.level = 1;
 		this.verticalPos = 0;
 		this.horizontalPos = 0;
-		this.neededXP = level * 1000 + (int)Math.pow(level, 2) * 450;
     }
     
     public String getName() {
@@ -210,41 +208,25 @@ public class Player implements Serializable {
 	}
 
 	public void changeLevel() {
-		if (this.experience >= 1000 && this.experience < 2450) {
-			this.level = 2;
-			this.attack += 2;
-			this.defense += 2;
-			this.health += 4;
-        } else if (this.experience >= 2450 && this.experience < 4800) {
-			this.level = 3;
-			this.attack += 2;
-			this.defense += 2;
-			this.health += 4;
-		} else if (this.experience >= 4800 && this.experience < 8050) {
-			this.level = 4;
-			this.attack += 2;
-			this.defense += 2;
-			this.health += 4;
-        } else if (this.experience >= 8050 && this.experience < 12200) {
+		if (this.experience >= 12200) {
 			this.level = 5;
-			this.attack += 2;
-			this.defense += 2;
-			this.health += 4;
-        } else if (this.experience >= 12200 && this.experience < 17250) {
-			this.attack += 2;
-			this.defense += 2;
-			this.health += 4;
-            this.level = 6;
-        } else if (this.experience >= 17250) {
-			this.attack += 2;
-			this.defense += 2;
-			this.health += 4;
-            this.level = 7;
-        } else {
+		} else if (this.experience >= 8050) {
+			this.level = 4;
+		} else if (this.experience >= 4800) {
+			this.level = 3;
+		} else if (this.experience >= 2450) {
+			this.level = 2;
+		} else {
 			this.level = 1;
 		}
+		if (this.oldlevel < this.level) {
+			this.attack += 2;
+			this.defense += 2;
+			this.health += 4;
+			this.oldlevel = this.level;
+			System.out.println("Player leveled up!");
+		}
     }
-	}
 
 	@Override
 	public String toString() {
@@ -252,7 +234,7 @@ public class Player implements Serializable {
 		String armor = this.getArmor();
 		// String heroClass = this.heroClass;
 		return "\n\nYOUR HERO:\nName: " + name + "\nClass: " + heroClass + "\n\nSTATS: " + "\nAttack: " + attack
-		+ "\nDefense: " + defense + "\nHit Points: " + health + "\n\nEquipment:\n" + "Armor: " + armor + "Weapon: " + weapon + "\nLevel: " + level + "\nExperience: " + this.experience + "\nExperience to level: " + this.neededXP
+		+ "\nDefense: " + defense + "\nHit Points: " + health + "\n\nEquipment:\n" + "Armor: " + armor + "Weapon: " + weapon + "\nLevel: " + level + "\nExperience: " + this.experience
 		+ "\nVerticalpos: " + this.verticalPos + "\nHorizontalPos: " + this.horizontalPos;
 	}
 }
