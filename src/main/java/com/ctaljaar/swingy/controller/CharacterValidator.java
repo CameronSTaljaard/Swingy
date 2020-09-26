@@ -1,9 +1,7 @@
 package com.ctaljaar.swingy.controller;
 
 import java.util.Scanner;
-
 import com.ctaljaar.swingy.util.Terminal;
-
 import java.io.*;
 
 public class CharacterValidator {

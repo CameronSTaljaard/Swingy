@@ -1,14 +1,21 @@
 package com.ctaljaar.swingy.model;
 
 import java.util.ArrayList;
+
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+
 import com.ctaljaar.swingy.util.Globals;
 import java.security.SecureRandom;
 
 public class Monster {
 	public static ArrayList<String> monsterNames = new ArrayList<String>();
 	SecureRandom srand = new SecureRandom();
+	@NotBlank (message = "Monster must be named")
 	String name;
+	@Min (value = 1, message = "Monster must have health")
 	int health;
+	@Min (value = 1, message = "Monster must have attack")
 	int attack;
 	
 	public Monster() {

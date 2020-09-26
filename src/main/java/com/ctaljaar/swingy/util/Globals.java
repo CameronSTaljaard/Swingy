@@ -9,6 +9,7 @@ public class Globals {
     public static Scanner scanner = new Scanner(System.in);
 	public static Player player;
 	public static ArrayList<String> validCommands = new ArrayList<String>();
+	public static boolean gui = false;
 
 	public static void populateCommands() {
 		validCommands.add("north");

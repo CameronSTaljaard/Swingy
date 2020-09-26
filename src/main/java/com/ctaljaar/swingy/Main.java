@@ -29,6 +29,7 @@ public class Main {
 			System.exit(0);
 
 		} else if (args[0].equals("gui")) {
+			Globals.gui = true;
 			Terminal.clearScreen();
 			new TextAreaLogProgram();
 			GameHandler.GameController();

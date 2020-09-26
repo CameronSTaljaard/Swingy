@@ -2,6 +2,8 @@ package com.ctaljaar.swingy.model;
 import java.util.Random;
 import java.util.concurrent.*;
 
+import javax.validation.constraints.NotNull;
+
 import com.ctaljaar.swingy.controller.CombatController;
 import com.ctaljaar.swingy.util.Globals;
 import com.ctaljaar.swingy.util.Terminal;
@@ -22,7 +24,7 @@ public class CombatHandler {
 		CombatController.combatLoop(monster, false);
 	}
 
-	public static boolean combatSimulator(Monster monster) {
+	public static boolean combatSimulator(@NotNull Monster monster) {
 		Random rand = new Random();
 
 		while (monster.health > 0 && Globals.player.getHealth() > 0) {

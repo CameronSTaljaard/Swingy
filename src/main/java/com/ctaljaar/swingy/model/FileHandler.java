@@ -2,11 +2,15 @@ package com.ctaljaar.swingy.model;
 
 import java.io.*;
 import java.util.*;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import com.ctaljaar.swingy.controller.CharacterValidator;
 import com.ctaljaar.swingy.util.Globals;
 
 public class FileHandler {
-	public static void createCharacter(String name, String heroClass) {
+	public static void createCharacter(@NotBlank String name, @NotBlank String heroClass) {
         try {
 			Player player = new Player(name, heroClass);
 
@@ -23,7 +27,7 @@ public class FileHandler {
 		}
 	}
 
-	public static String validateCharacter(String mode) {
+	public static String validateCharacter(@NotBlank String mode) {
         Scanner scanner = Globals.scanner;
         String name = "";
 		String heroClass = "";
@@ -48,7 +52,7 @@ public class FileHandler {
 		f.delete();
 	}
 
-	public static Player loadPlayer(String name) {
+	public static Player loadPlayer(@NotNull String name) {
         try {
 			FileInputStream fis = new FileInputStream("saves/heroes/" + name + ".ser");
 			ObjectInputStream ois = new ObjectInputStream(fis);
@@ -68,7 +72,7 @@ public class FileHandler {
         return (null);
     }
         
-	public static void updatePlayer(Player player) {
+	public static void updatePlayer(@NotNull Player player) {
         try {
             File f = new File("saves/heroes/" + player.getName() + ".ser");
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f));
