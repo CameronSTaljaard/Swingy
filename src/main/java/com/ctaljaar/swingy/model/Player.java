@@ -19,6 +19,7 @@ public class Player implements Serializable {
 	@NotBlank(message = "Class cannot be blank.")
 	private String heroClass;
 	private int health;
+	@Min(value = 1, message="Total health can not be 0, or lower.")
 	private int totalHealth;
 	
 	@Min(value = 1, message = "Level can't be lower than zero.")
@@ -42,6 +43,7 @@ public class Player implements Serializable {
 	@Min(value = 1, message = "You can not go below level 1.")
 	private int mapSize;
 
+	// No further validation needed for these variables.
 	private int verticalPos;
 	private int horizontalPos;
 	private int oldlevel;
@@ -163,7 +165,7 @@ public class Player implements Serializable {
 		return (result);
 	}
 
-	public void setWeapon(int weapon) {
+	public void setWeapon(@Min(1) @Max(3) int weapon) {
 		this.weapon = weapon;
 		this.attack += 1;
 	}
@@ -202,7 +204,7 @@ public class Player implements Serializable {
 		return this.weapon;
 	}
 
-	public void setArmor(int armor) {
+	public void setArmor(@Min(1) @Max(3) int armor) {
 		this.armor = armor;
 		this.defense += 1;
 	}
