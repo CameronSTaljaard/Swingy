@@ -5,7 +5,6 @@ public class Terminal {
 		if (Globals.gui == false) {
 			System.out.print("\033[H\033[2J");
 			System.out.flush();
-			System.out.println("Globals.gui == " + Globals.gui);
 		}
 	}
 }
